@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\dashboard\PostController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,8 @@ Route::get('home/{nombre?}/{apellido?}', function ($nombre = "pepe", $apellido =
     //return view('home')->with('nombre', $nombre)->with('apellido', $apellido); //Formas distintas de mandar datos a las views
     return view('home', ['nombre' => $nombre, 'apellido' => $apellido, 'posts' => $posts, 'posts2' => $posts2]);
 })->name("home");
+
+//Route::get('post', [PostController::class, 'index']);
+
+
+Route::resource('dashboard/post', PostController::class);
