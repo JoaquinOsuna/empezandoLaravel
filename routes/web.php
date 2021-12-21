@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\dashboard\PostController;
+use App\Http\Controllers\dashboard\CategoryController;
+use App\Models\Category;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("home");
 
 Route::get('/acerca-de', function () {
     return "Hola mundo";
@@ -45,3 +47,4 @@ Route::get('home/{nombre?}/{apellido?}', function ($nombre = "pepe", $apellido =
 
 
 Route::resource('dashboard/post', PostController::class);
+Route::resource('dashboard/category', CategoryController::class);
