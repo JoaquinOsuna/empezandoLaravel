@@ -4,11 +4,16 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'rol.admin']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("dashboard.post.create", ['post' => new Post()]);
+        $categories = Category::pluck('id', 'title');
+        return view("dashboard.post.create", ['post' => new Post(), 'categories' => $categories]);
     }
 
     /**ee
@@ -84,7 +90,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("dashboard.post.edit", ["post" =>$post] );
+        $categories = Category::pluck('id', 'title');
+        return view("dashboard.post.edit", ["post" =>$post, "categories" => $categories] );
     }
 
     /**
@@ -99,6 +106,11 @@ class PostController extends Controller
         $post->update($request->validated()); //UPDATE
         return back()->with('status', 'Post actualizado con exito'); 
     }
+    // public function image(Request $request, Post $post)
+    // {
+    //     $post->update($request->validated()); //UPDATE
+    //     return back()->with('status', 'Post actualizado con exito'); 
+    // }
 
     /**
      * Remove the specified resource from storage.

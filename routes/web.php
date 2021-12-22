@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\UserController;
 use App\Models\Category;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,9 @@ Route::get('home/{nombre?}/{apellido?}', function ($nombre = "pepe", $apellido =
 
 Route::resource('dashboard/post', PostController::class);
 Route::resource('dashboard/category', CategoryController::class);
+Route::resource('dashboard/user', UserController::class);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

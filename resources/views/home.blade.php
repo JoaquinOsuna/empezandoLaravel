@@ -1,44 +1,25 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi primera vista</title>
-</head>
-<body>
-    <h1>Mundo Laravel - {{ "Hola mundo $nombre $apellido" }}  </h1>
-
-    <ul>
-        @isset($posts2)
-            isset
-        @endisset
-
-        @empty($posts2)
-            empty
-        @endempty
-
-
-        @forelse ($posts as $post)
-        <li>
-            
-            @if ($loop->first)
-                Primero:
-            @endif
-
-
-            @if ($loop->last)
-            Ultimo:
-            @endif
-
-            {{ $post }}
-        </li>
-        @empty
-        <li>Vacio</li>
-
-        @endforelse
-    </ul>
-</body>
-</html>
-
-
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+              
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @auth
+                    {{ auth()->user()->rol}}
+                    @endauth
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
