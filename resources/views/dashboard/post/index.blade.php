@@ -11,6 +11,7 @@
         <tr>
             <td>Id</td>
             <td>Titulo</td>
+            <td>Categoria</td>
             <td>Posteado</td>
             <td>Creacion</td>
             <td>Actualizacion</td>
@@ -22,6 +23,7 @@
         <tr>
             <td>{{$post->id}}</td>
             <td>{{$post->title}}</td>
+            <td>{{$post->category->title}}</td>
             <td>{{$post->posted}}</td>
             <td>{{$post->created_at->format('Y-M-d')}}</td>
             <td>{{$post->updated_at->format('Y-M-d')}}</td>

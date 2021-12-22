@@ -47,4 +47,5 @@ Route::get('home/{nombre?}/{apellido?}', function ($nombre = "pepe", $apellido =
 
 
 Route::resource('dashboard/post', PostController::class);
-Route::resource('dashboard/category', CategoryController::class);
+// Route::resource('dashboard/category', CategoryController::class);
+Route::post('dasboard/post/{post}/image', PostController::class);
